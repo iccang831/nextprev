@@ -1,0 +1,22 @@
+<b:if cond='data:blog.pageType == &quot;item&quot;'>
+                        <b:if expr:cond='data:post.labels any (l =&gt; l.name != data:type.name)'><script type='text/javascript'>var selectchap = false;</script></b:if>
+<b:if expr:cond='data:post.labels any (l =&gt; l.name == data:type.name)'><script type='text/javascript'>var selectchap = true;</script></b:if>
+<b:loop index='i' values='data:post.labels' var='label'>
+<b:if cond='data:i == 0'>
+<div class='pager-js rounded' id='pager-js'>
+<div class='_prev' id='prevjs'><a class='pager-js-nolink'><span class='material-icons' style='font-size:1.2rem;text-decoration: line-through;font-family:Book Antiqua;color: #4b4b4b;'>&#9664;Sebelumnya</span></a></div>
+<div class='_index' id='indexjs'><a class='pager-js-nolink'><span class='material-icons' style='font-size:2.0rem;text-decoration: line-through;'>&#10227;</span></a></div>
+<div class='_next' id='nextjs'><a class='pager-js-nolink'><span class='material-icons' style='font-size:1.2rem;text-decoration: line-through;font-family:Book Antiqua;color: #4b4b4b;'>Selanjutnya&#9654;</span></a></div>
+</div>
+<script type='text/javascript'>
+var postPrev = &quot;<span class='material-icons' style='font-size:1.2rem;font-family:Book Antiqua;color: #4b4b4b;'>&#9664;Sebelumnya</span>&quot;;
+var postNext = &quot;<span class='material-icons' style='font-size:1.2rem;font-family:Book Antiqua;color: #4b4b4b;'>Selanjutnya&#9654;</span>&quot;;
+var postIndex = &quot;<span class='material-icons' style='font-size:2.0rem;'>&#10227;</span>&quot;;
+var postID = <data:post.id/>;
+/*<![CDATA[*/
+if(selectchap==false){var yktocs=function(data){var i=0;for(;i<data.feed.entry.length;i++){var j=0;for(;j<data.feed.entry[i].link.length;j++){if("alternate"==data.feed.entry[i].link[j].rel){var entityUrl=data.feed.entry[i].link[j].href;break}}document.getElementById("indexjs").innerHTML="<a href='"+entityUrl+"' title='Index Novel'>"+postIndex+"</a>"}};var ykpager=function(data){var node={postlist:[]};var i=0;for(;i<data.feed.entry.length;i++){var j=0;for(;j<data.feed.entry[i].link.length;j++){if("alternate"==data.feed.entry[i].link[j].rel){var murl=data.feed.entry[i].link[j].href;break}}var videoId=data.feed.entry[i].id.$t;var CAPTURE_ID=videoId.substr(51,19);node.postlist.push({url:murl,id:CAPTURE_ID})}var v=node.postlist.findIndex((timeline_mode)=>{return timeline_mode.id==postID});var id=v+1;var cbs=node.postlist[id];if(null!=cbs){var g=Object.values(cbs)[0];var lnkDiv=document.getElementById("prevjs");lnkDiv.innerHTML="<a href='"+g+"' title='Chapter Sebelumnya'>"+postPrev+"</a>"}var q=v-1;var val=node.postlist[q];if(null!=val){var k=Object.values(val)[0];lnkDiv=document.getElementById("nextjs");lnkDiv.innerHTML="<a href='"+k+"' title='Chapter Selanjutnya'>"+postNext+"</a>"}}}else{document.write("<style>.pager-js{display:none;}</style>")};
+/*]]>*/</script>
+<script defer='defer' expr:src='&quot;/feeds/posts/summary/-/&quot; + data:label.name + &quot;?alt=json-in-script&amp;callback=ykpager&amp;max-results=99999&amp;&quot;' type='text/javascript'/>
+<script defer='defer' expr:src='&quot;/feeds/posts/summary/-/&quot; + data:type.name + &quot;/&quot; + data:label.name + &quot;?orderby=published&amp;alt=json-in-script&amp;callback=yktocs&amp;max-results=1&quot;' type='text/javascript'/>
+</b:if>
+</b:loop>
