@@ -1,4 +1,13 @@
-//<![CDATA[
+<style type="text/css">
+#sitemap6 {font-size:14px; font-weight:400;}
+#sitemap6 .judul {font-size:120%; background-color:#3498DB; color:#fff; font-weight:100; text-align:center; margin-bottom:20px; padding:15px;}
+#sitemap6 a {color:#666; text-decoration:none; transition:all .3s ease;}
+#sitemap6 a:hover {color:#000;}
+#sitemap6 ol {margin:0px; padding:0px;}
+#sitemap6 ol li {color:#666; list-style-type:disc; margin:0px; padding:10px; line-height:1.5em; -webkit-margin-start:40px !important;}
+</style>
+<div id="sitemap6">Loading....</div>
+<script> //<![CDATA[
 /* Blogger Sitemap One Label Title Only by igniel.com */
 var label = 'Raja Petir';
 var text = 'Jumlah Halaman';
